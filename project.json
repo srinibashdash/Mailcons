@@ -1,0 +1,46 @@
+{
+  "name": "Gmailactivity",
+  "description": "Gmail",
+  "main": "Main.xaml",
+  "dependencies": {
+    "CortanaExtensions": "1.0.0",
+    "CortanaLaunchHelper.ranbi": "1.0.0",
+    "UiPath": "19.4.7054.14370",
+    "UiPath.Credentials.Activities": "1.1.6479.13204",
+    "UiPath.Database.Activities": "1.2.6863.32528",
+    "UiPath.DocumentProcessing.Contracts": "1.0.0",
+    "UiPath.Excel.Activities": "[2.5.3]",
+    "UiPath.GoogleSpeech.Activities": "0.1.6850.39757",
+    "UiPath.GSuite.Activities": "1.1.0",
+    "UiPath.Mail.Activities": "[1.4.0]",
+    "UiPath.PDF.Activities": "2.0.0",
+    "UiPath.Python.Activities": "1.1.6863.33404",
+    "UiPath.System.Activities": "[19.4.0]",
+    "UiPath.UIAutomation.Activities": "[19.4.1]",
+    "UiPath.WebAPI.Activities": "1.4.1",
+    "UiPath.Word.Activities": "1.3.1",
+    "UiPathTeam.Gmail.Activities": "1.0.6822.33137",
+    "UiPathTeam.WpfFormCreator.Activities": "0.0.6824.28668"
+  },
+  "schemaVersion": "3.2",
+  "studioVersion": "19.4.2.0",
+  "projectVersion": "1.0.4-alpha.2",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "isPausable": true,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ]
+  },
+  "projectType": "Workflow",
+  "libraryOptions": {
+    "includeOriginalXaml": false,
+    "privateWorkflows": []
+  },
+  "arguments": {
+    "input": [],
+    "output": []
+  },
+  "webServices": []
+}
