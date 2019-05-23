@@ -45,7 +45,7 @@ namespace CredentialManager
             try
             {
                 var showmymail = "*UiPath\\app-19.4.2\\UiRobot.exe -f *Main.xaml";
-                var invokebot = "*UiPath\\app-19.4.2\\UiRobot.exe -f *Openmail.xaml -input \"{ 'source': '%1', 'subject': '%message%'}\"";
+                var invokebot = "*UiPath\\app-19.4.2\\UiRobot.exe -f *Openmail.xaml -input \"{ 'source': '%1', 'subject': 'test'}\"";
                 showmymail = showmymail.Replace("*", currentPath);
                 invokebot = invokebot.Replace("*", currentPath);
                 
@@ -64,10 +64,10 @@ namespace CredentialManager
                 using (StreamWriter sw = File.CreateText(fileBotProcess))
                 {
                     sw.WriteLine("@echo off");
-                    sw.WriteLine("set message=%2");
-                    sw.WriteLine("set message=%message:|=%");
-                    sw.WriteLine("set message=%message:'=%");
-                    sw.WriteLine("set message=%message:\" =%");
+                    //sw.WriteLine("set message=%2");
+                    //sw.WriteLine("set message=%message:|=%");
+                    //sw.WriteLine("set message=%message:'=%");
+                    //sw.WriteLine("set message=%message:\" =%");
                     sw.WriteLine(invokebot);
                 }
             }
