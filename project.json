@@ -1,6 +1,6 @@
 {
-  "name": "Gmailactivity",
-  "description": "Gmail",
+  "name": "MailConsolidator",
+  "description": "ConsolidateCategorisedMailInSingleView",
   "main": "Main.xaml",
   "dependencies": {
     "CortanaExtensions": "1.0.0",

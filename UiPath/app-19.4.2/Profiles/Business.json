@@ -1,0 +1,34 @@
+﻿{
+  "profileName": "Business",
+  "profileKey": "Business",
+  "profileFlags": [
+    {
+      "name": "AllowUserTemplates",
+      "value": false
+    },
+    {
+      "name": "UseBusinessFriendlyExpressionTextBox",
+      "value": true
+    },
+    {
+      "name": "AllowDebugFeatures",
+      "value":  false 
+    },
+    {
+      "name": "AllowAdvancedFileOperations",
+      "value": false
+    },
+    {
+      "name": "AllowAdvancedToolWindows",
+      "value": false
+    }
+  ],
+  "profileValues": [
+    {
+      "name": "DefaultTemplatesID",
+      "values": [
+        "BusinessProcessTemplate"
+      ]
+    }
+  ]
+}
