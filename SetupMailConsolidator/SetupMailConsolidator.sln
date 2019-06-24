@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvReader", "CsvReader\CsvR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CredentialManager", "CredentialManager\CredentialManager.csproj", "{6C01046C-DAAE-46D0-AE56-9FE7A4EC5066}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppOpener", "AppOpener\AppOpener.csproj", "{2BC6C0DC-2FE2-450E-AC4D-BDDCF59DB61E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{6C01046C-DAAE-46D0-AE56-9FE7A4EC5066}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6C01046C-DAAE-46D0-AE56-9FE7A4EC5066}.Release|x86.ActiveCfg = Release|Any CPU
 		{6C01046C-DAAE-46D0-AE56-9FE7A4EC5066}.Release|x86.Build.0 = Release|Any CPU
+		{2BC6C0DC-2FE2-450E-AC4D-BDDCF59DB61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BC6C0DC-2FE2-450E-AC4D-BDDCF59DB61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BC6C0DC-2FE2-450E-AC4D-BDDCF59DB61E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2BC6C0DC-2FE2-450E-AC4D-BDDCF59DB61E}.Debug|x86.Build.0 = Debug|Any CPU
+		{2BC6C0DC-2FE2-450E-AC4D-BDDCF59DB61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BC6C0DC-2FE2-450E-AC4D-BDDCF59DB61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BC6C0DC-2FE2-450E-AC4D-BDDCF59DB61E}.Release|x86.ActiveCfg = Release|Any CPU
+		{2BC6C0DC-2FE2-450E-AC4D-BDDCF59DB61E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

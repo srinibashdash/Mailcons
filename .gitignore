@@ -2,3 +2,5 @@
 [Bb]in/
 [Oo]bj/
 .local/
+.vs/
+packages/

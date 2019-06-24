@@ -33,6 +33,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnProcess = new System.Windows.Forms.Button();
             this.lblRunningFrom = new System.Windows.Forms.Label();
             this.txtReceivedOn = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,7 +44,10 @@
             this.txtSource = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.btnProcess = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbAction = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtAttachment = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +75,10 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.MistyRose;
+            this.groupBox1.Controls.Add(this.txtAttachment);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.cmbAction);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btnProcess);
             this.groupBox1.Controls.Add(this.lblRunningFrom);
             this.groupBox1.Controls.Add(this.txtReceivedOn);
@@ -90,19 +98,29 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             // 
+            // btnProcess
+            // 
+            this.btnProcess.Location = new System.Drawing.Point(182, 421);
+            this.btnProcess.Name = "btnProcess";
+            this.btnProcess.Size = new System.Drawing.Size(74, 31);
+            this.btnProcess.TabIndex = 9;
+            this.btnProcess.Text = "GO";
+            this.btnProcess.UseVisualStyleBackColor = true;
+            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
+            // 
             // lblRunningFrom
             // 
             this.lblRunningFrom.AutoSize = true;
             this.lblRunningFrom.BackColor = System.Drawing.Color.Red;
             this.lblRunningFrom.ForeColor = System.Drawing.Color.White;
-            this.lblRunningFrom.Location = new System.Drawing.Point(18, 32);
+            this.lblRunningFrom.Location = new System.Drawing.Point(18, 16);
             this.lblRunningFrom.Name = "lblRunningFrom";
             this.lblRunningFrom.Size = new System.Drawing.Size(0, 13);
             this.lblRunningFrom.TabIndex = 8;
             // 
             // txtReceivedOn
             // 
-            this.txtReceivedOn.Location = new System.Drawing.Point(19, 365);
+            this.txtReceivedOn.Location = new System.Drawing.Point(19, 279);
             this.txtReceivedOn.Name = "txtReceivedOn";
             this.txtReceivedOn.Size = new System.Drawing.Size(218, 20);
             this.txtReceivedOn.TabIndex = 7;
@@ -110,7 +128,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 337);
+            this.label4.Location = new System.Drawing.Point(16, 263);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 6;
@@ -118,7 +136,7 @@
             // 
             // txtSender
             // 
-            this.txtSender.Location = new System.Drawing.Point(19, 305);
+            this.txtSender.Location = new System.Drawing.Point(19, 240);
             this.txtSender.Name = "txtSender";
             this.txtSender.Size = new System.Drawing.Size(218, 20);
             this.txtSender.TabIndex = 5;
@@ -126,7 +144,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 280);
+            this.label3.Location = new System.Drawing.Point(16, 224);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 4;
@@ -134,7 +152,7 @@
             // 
             // txtSubject
             // 
-            this.txtSubject.Location = new System.Drawing.Point(19, 157);
+            this.txtSubject.Location = new System.Drawing.Point(19, 110);
             this.txtSubject.Multiline = true;
             this.txtSubject.Name = "txtSubject";
             this.txtSubject.Size = new System.Drawing.Size(297, 111);
@@ -143,7 +161,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 130);
+            this.label2.Location = new System.Drawing.Point(16, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 2;
@@ -151,7 +169,7 @@
             // 
             // txtSource
             // 
-            this.txtSource.Location = new System.Drawing.Point(19, 97);
+            this.txtSource.Location = new System.Drawing.Point(19, 71);
             this.txtSource.Name = "txtSource";
             this.txtSource.Size = new System.Drawing.Size(218, 20);
             this.txtSource.TabIndex = 1;
@@ -159,7 +177,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 71);
+            this.label1.Location = new System.Drawing.Point(16, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 0;
@@ -176,15 +194,45 @@
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.Resize += new System.EventHandler(this.treeView1_Resize);
             // 
-            // btnProcess
+            // label5
             // 
-            this.btnProcess.Location = new System.Drawing.Point(67, 452);
-            this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(114, 31);
-            this.btnProcess.TabIndex = 9;
-            this.btnProcess.Text = "Action";
-            this.btnProcess.UseVisualStyleBackColor = true;
-            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 401);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Select Action";
+            // 
+            // cmbAction
+            // 
+            this.cmbAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAction.FormattingEnabled = true;
+            this.cmbAction.Items.AddRange(new object[] {
+            "MAIL",
+            "RAISE TICKET",
+            "REPORT ISSUE",
+            "CREATE MEETING"});
+            this.cmbAction.Location = new System.Drawing.Point(21, 424);
+            this.cmbAction.Name = "cmbAction";
+            this.cmbAction.Size = new System.Drawing.Size(142, 21);
+            this.cmbAction.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(18, 302);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Attachments";
+            // 
+            // txtAttachment
+            // 
+            this.txtAttachment.Location = new System.Drawing.Point(19, 319);
+            this.txtAttachment.Multiline = true;
+            this.txtAttachment.Name = "txtAttachment";
+            this.txtAttachment.Size = new System.Drawing.Size(293, 63);
+            this.txtAttachment.TabIndex = 13;
             // 
             // Form1
             // 
@@ -219,6 +267,10 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Label lblRunningFrom;
         private System.Windows.Forms.Button btnProcess;
+        private System.Windows.Forms.ComboBox cmbAction;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtAttachment;
     }
 }
 

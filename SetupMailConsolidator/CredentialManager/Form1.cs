@@ -17,6 +17,14 @@ namespace CredentialManager
         {
             CredentialUtil.SetCredentials(txtGmailName.Text, txtGmailUser.Text, txtGmailPwd.Text, CredentialManagement.PersistanceType.LocalComputer);
             CredentialUtil.SetCredentials(txtOutlookName.Text, txtOutlookUser.Text, string.Empty, CredentialManagement.PersistanceType.LocalComputer);
+            var fileName = "settings.data";
+            if (File.Exists(fileName))
+                File.Delete(fileName);
+            using (StreamWriter file = new StreamWriter(fileName, true))
+            {
+                file.WriteLine(txtApplicationPath.Text);
+                file.WriteLine(txtReportIssueEmail.Text);
+            }
             CreateBatchFiles();
             CreateStartMenuLink();
             MessageBox.Show("Credential Updated in Windows Credential and batch files are generated");
@@ -97,6 +105,12 @@ namespace CredentialManager
                 var outlookDetail = outlook.Split('|');
                 txtOutlookUser.Text = outlookDetail[0];
             }
+        }
+
+        private void txtApplicationPath_DoubleClick(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            txtApplicationPath.Text = openFileDialog1.FileName;
         }
     }
 }

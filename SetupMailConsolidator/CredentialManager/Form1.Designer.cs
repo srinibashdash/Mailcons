@@ -41,14 +41,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtApplicationPath = new System.Windows.Forms.TextBox();
+            this.txtReportIssueEmail = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(202, 179);
+            this.btnUpdate.Location = new System.Drawing.Point(202, 275);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(67, 36);
-            this.btnUpdate.TabIndex = 0;
+            this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.button1_Click);
@@ -58,7 +63,7 @@
             this.txtGmailUser.Location = new System.Drawing.Point(83, 35);
             this.txtGmailUser.Name = "txtGmailUser";
             this.txtGmailUser.Size = new System.Drawing.Size(186, 20);
-            this.txtGmailUser.TabIndex = 2;
+            this.txtGmailUser.TabIndex = 1;
             // 
             // txtGmailPwd
             // 
@@ -66,7 +71,7 @@
             this.txtGmailPwd.Name = "txtGmailPwd";
             this.txtGmailPwd.PasswordChar = '*';
             this.txtGmailPwd.Size = new System.Drawing.Size(186, 20);
-            this.txtGmailPwd.TabIndex = 3;
+            this.txtGmailPwd.TabIndex = 2;
             // 
             // label3
             // 
@@ -98,10 +103,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(15, 179);
+            this.button2.Location = new System.Drawing.Point(15, 275);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(67, 36);
-            this.button2.TabIndex = 8;
+            this.button2.TabIndex = 7;
             this.button2.Text = "Close";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -120,7 +125,7 @@
             this.txtOutlookUser.Location = new System.Drawing.Point(83, 138);
             this.txtOutlookUser.Name = "txtOutlookUser";
             this.txtOutlookUser.Size = new System.Drawing.Size(186, 20);
-            this.txtOutlookUser.TabIndex = 10;
+            this.txtOutlookUser.TabIndex = 3;
             // 
             // txtOutlookName
             // 
@@ -161,11 +166,53 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "You outlook must be configured with this user";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 179);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Invoke Application path";
+            // 
+            // txtApplicationPath
+            // 
+            this.txtApplicationPath.Location = new System.Drawing.Point(12, 195);
+            this.txtApplicationPath.Name = "txtApplicationPath";
+            this.txtApplicationPath.ReadOnly = true;
+            this.txtApplicationPath.Size = new System.Drawing.Size(256, 20);
+            this.txtApplicationPath.TabIndex = 4;
+            this.txtApplicationPath.DoubleClick += new System.EventHandler(this.txtApplicationPath_DoubleClick);
+            // 
+            // txtReportIssueEmail
+            // 
+            this.txtReportIssueEmail.Location = new System.Drawing.Point(12, 234);
+            this.txtReportIssueEmail.Name = "txtReportIssueEmail";
+            this.txtReportIssueEmail.Size = new System.Drawing.Size(256, 20);
+            this.txtReportIssueEmail.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 218);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(94, 13);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Report Issue email";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 232);
+            this.ClientSize = new System.Drawing.Size(292, 323);
+            this.Controls.Add(this.txtReportIssueEmail);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtApplicationPath);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label2);
@@ -202,6 +249,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtApplicationPath;
+        private System.Windows.Forms.TextBox txtReportIssueEmail;
+        private System.Windows.Forms.Label label6;
     }
 }
 

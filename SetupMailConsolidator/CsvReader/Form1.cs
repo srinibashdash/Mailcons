@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.FileIO;
 
 namespace CsvReader
 {
@@ -24,28 +25,30 @@ namespace CsvReader
             {
                 //Populate data from CSV file
                 var dt = ReadCsvFile();
-
-                //Populate all datarow collection for categorization
-                var bankRows = dt.Select("Sender like '%bank%'").ToList().ToArray();
-                var dueDateRows = dt.Select("Subject like '%expiry%' or Subject like '%due%' or Subject like '%appointment%'");
-                var urgentRows = dt.Select("Subject like '%urgent%'");
-                var highImportance = dt.Select("Importance = '2'");
+                var dtCategories = dt.DefaultView.ToTable(true, "category");
                 var remainRows = dt.Select().ToList();
-                RemoveRows(remainRows, bankRows);
-                RemoveRows(remainRows, dueDateRows);
-                RemoveRows(remainRows, urgentRows);
-                RemoveRows(remainRows, highImportance);
 
-                // start off by adding a base treeview node
                 TreeNode mainNode = new TreeNode();
                 mainNode.Name = "mainNode";
                 mainNode.Text = "Consolidated Mails";
+                // start off by adding a base treeview node
                 treeView1.Nodes.Add(mainNode);
 
+                foreach (DataRow item in dtCategories.Rows)
+                {
+                    var category = item["category"].ToString();
+                    if (!string.IsNullOrEmpty(category))
+                    {
+                        var rows = dt.Select("category like '%" + category + "%'").ToList().ToArray();
+                        RemoveRows(remainRows, rows);
+                        AddCategoryNodes(rows, mainNode, category);
+                    }
+                }
+                //Populate all datarow collection for categorization
+                var highImportance = dt.Select("Importance = '2'");
+                RemoveRows(remainRows, highImportance);
+
                 //Add new root nodes
-                AddCategoryNodes(bankRows, mainNode, "Bank Mails");
-                AddCategoryNodes(dueDateRows, mainNode, "Take care of these");
-                AddCategoryNodes(urgentRows, mainNode, "Urgent Mails");
                 AddCategoryNodes(highImportance, mainNode, "High Importance Mails");
                 AddCategoryNodes(remainRows.ToArray(), mainNode, "Remaining Unread Mails", true);
                 treeView1.ExpandAll();
@@ -61,6 +64,7 @@ namespace CsvReader
                 MessageBox.Show("Error during start of view \n" + ex.Message);
                 Close();
             }
+            cmbAction.SelectedIndex = 0;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -101,8 +105,8 @@ namespace CsvReader
         {
             TreeNode node = new TreeNode();
             node.Name = runningIds++.ToString();
-            node.Text = string.Concat(row.ItemArray[0].ToString(), " ", row.ItemArray[1], " Sent by [", row.ItemArray[3], "] On ", row.ItemArray[4]);
-            node.Tag = string.Concat(row.ItemArray[0].ToString(), ",", row.ItemArray[1].ToString(), ",", row.ItemArray[2].ToString(), ",", row.ItemArray[3].ToString(), ",", row.ItemArray[4].ToString(), ",");
+            node.Text = string.Concat(row.ItemArray[0].ToString(), " ", row.ItemArray[1], " Sent by [", row.ItemArray[4], "] On ", row.ItemArray[5]);
+            node.Tag = row.ItemArray;
             treeNode.Nodes.Add(node);
         }
 
@@ -123,6 +127,43 @@ namespace CsvReader
         }
 
         public DataTable ReadCsvFile()
+        {
+
+            DataTable dtCsv = new DataTable();
+            var FileSaveWithPath = "data.csv";
+            TextFieldParser parser = new TextFieldParser(new StreamReader(FileSaveWithPath));
+            parser.HasFieldsEnclosedInQuotes = true;
+            parser.SetDelimiters(",");
+
+            string[] fields;
+            int i = 0;
+            while (!parser.EndOfData)
+            {
+                fields = parser.ReadFields();
+                int j = 0;
+                if (i == 0)
+                {
+                    foreach (string field in fields)
+                        dtCsv.Columns.Add(field); //add headers  
+                }
+                else
+                {
+                    DataRow dr = dtCsv.NewRow();
+                    foreach (string field in fields)
+                    {
+                        dr[j] = field.ToString();
+                        j++;
+                    }
+                    dtCsv.Rows.Add(dr); //add other rows  
+                }
+                i++;
+            }
+
+            parser.Close();
+            return dtCsv;
+        }
+
+        public DataTable ReadCsvFile1()
         {
 
             DataTable dtCsv = new DataTable();
@@ -171,40 +212,53 @@ namespace CsvReader
         {
             if(e.Node.Tag != null)
             {
-                var data = e.Node.Tag.ToString().Split(',');
-                txtSource.Text = data[0];
-                txtSubject.Text = data[1];
-                txtSender.Text = data[3];
-                txtReceivedOn.Text = data[4];
+                var data = (object[])e.Node.Tag;
+                txtSource.Text = data[0].ToString();
+                txtSubject.Text = data[1].ToString();
+                var attachment = data[2].ToString();
+                txtAttachment.Text = string.Empty;
+                foreach (var item in attachment.Split('|'))
+                {
+                    if(!string.IsNullOrEmpty(item))
+                        txtAttachment.Text += item + Environment.NewLine;
+                }
+                txtSender.Text = data[4].ToString();
+                txtReceivedOn.Text = data[5].ToString();
             }
         }
 
         private void treeView1_Resize(object sender, EventArgs e)
         {
-            try
-            {
-                treeView1.Font = new System.Drawing.Font(treeView1.Font.FontFamily.Name, treeView1.Size.Width / 70);
-                groupBox1.Font = new System.Drawing.Font(treeView1.Font.FontFamily.Name, treeView1.Size.Width / 70);
-                //groupBox1.Width = treeView1.Size.Width / 5;
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    treeView1.Font = new System.Drawing.Font(treeView1.Font.FontFamily.Name, treeView1.Size.Width / 70);
+            //    groupBox1.Font = new System.Drawing.Font(treeView1.Font.FontFamily.Name, treeView1.Size.Width / 70);
+            //    //groupBox1.Width = treeView1.Size.Width / 5;
+            //}
+            //catch (Exception)
+            //{
 
-            }
+            //}
             
         }
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSource.Text)) return;
-            var arg = txtSource.Text + " \"" + txtSubject.Text + "\"";
+            var fileName = "mail.data";
+            if (File.Exists(fileName))
+                File.Delete(fileName);
+            using (StreamWriter file = new StreamWriter(fileName, true))
+            {
+                file.WriteLine(cmbAction.Text);
+                file.WriteLine(txtSource.Text);
+                file.WriteLine(txtSubject.Text);
+            }
 
             using (Process myProcess = new Process())
             {
                 //myProcess.StartInfo.UseShellExecute = false;
                 myProcess.StartInfo.FileName = "invokeBotProcess.bat";
                 myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
-                myProcess.StartInfo.Arguments = arg;
                 myProcess.Start();
 
             }
